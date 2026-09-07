@@ -98,7 +98,7 @@ const Featured = () => {
 
   return (
     <section
-      className="w-full px-4 py-20 lg:py-28 relative overflow-hidden"
+      className="w-full px-4 py-20 relative overflow-hidden"
       style={{ backgroundColor: "var(--bg-main)" }}
     >
       <div className="mx-auto">
@@ -295,7 +295,7 @@ const Featured = () => {
 
         {/* PARALLEL FOOTER ROW (Text + Indicators + Card Number) */}
         <div
-          className="mt-8 pt-6 border-t md:mx-6 flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+          className="mt-8 pt-6 border-t flex flex-col lg:flex-row lg:items-center justify-between gap-6"
           style={{ borderColor: "var(--border-light)" }}
         >
           {/* Footer Text */}
