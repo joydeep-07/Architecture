@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "normal";
+  src: url("./assets/fonts/Saira.ttf") format("truetype");
+  font-display: swap;
+}
+
+*{
+    font-family: normal;
+}
