@@ -51,7 +51,6 @@ const Featured = () => {
   const [activeCategory, setActiveCategory] = useState("office");
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [direction, setDirection] = useState(1);
-
   const activeIndicatorRef = useRef(null);
   const categoryRefs = useRef({});
 
@@ -69,7 +68,6 @@ const Featured = () => {
 
   useEffect(() => {
     const currentElement = categoryRefs.current[activeCategory];
-
     if (currentElement && activeIndicatorRef.current) {
       gsap.to(activeIndicatorRef.current, {
         y: currentElement.offsetTop,
@@ -98,11 +96,11 @@ const Featured = () => {
 
   return (
     <section
-      className="w-full px-4 py-20 relative overflow-hidden"
+      className="w-full md:px-4  py-20 relative overflow-hidden"
       style={{ backgroundColor: "var(--bg-main)" }}
     >
       <div className="mx-auto">
-        {/* Header */}
+        {/* Header – same on all screens */}
         <div className="max-w-3xl mb-12 lg:mb-16">
           <span
             className="inline-flex items-center text-xs font-semibold uppercase tracking-[0.18em] mb-4"
@@ -110,7 +108,6 @@ const Featured = () => {
           >
             Property catalog
           </span>
-
           <h2
             className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.05]"
             style={{ color: "var(--text-main)" }}
@@ -123,26 +120,22 @@ const Featured = () => {
           </h2>
         </div>
 
-        {/* Main Layout */}
-        <div className="grid grid-cols-1 md:px-0 lg:grid-cols-4 gap-8 lg:gap-12 items-start">
+        {/* ========== DESKTOP / LAPTOP (unchanged) ========== */}
+        <div className="hidden lg:grid grid-cols-4 gap-12 items-start">
           {/* LEFT CATEGORY MENU */}
           <div className="relative h-full flex flex-col justify-between">
             <div className="relative">
-              {/* Desktop sliding indicator */}
               <div
                 ref={activeIndicatorRef}
-                className="hidden lg:block absolute left-0 w-full pointer-events-none rounded-l-xl z-0"
+                className="absolute left-0 w-full pointer-events-none rounded-l-xl z-0"
                 style={{
                   borderLeft: "3px solid var(--accent-primary)",
                   backgroundColor: "var(--bg-secondary)",
                 }}
               />
-
-              {/* Mobile horizontal scroll / Desktop vertical list */}
-              <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible scrollbar-none relative z-10">
+              <div className="flex flex-col relative z-10">
                 {CATEGORIES.map((category) => {
                   const isActive = activeCategory === category.id;
-
                   return (
                     <div
                       key={category.id}
@@ -150,10 +143,10 @@ const Featured = () => {
                         categoryRefs.current[category.id] = el;
                       }}
                       onClick={() => handleCategoryChange(category.id)}
-                      className="min-w-max lg:min-w-0 relative z-10 cursor-pointer group"
+                      className="min-w-0 relative z-10 cursor-pointer group"
                     >
                       <div
-                        className="px-4 py-4 lg:py-5 flex items-center justify-between gap-6 transition-all duration-300"
+                        className="px-4 py-5 flex items-center justify-between gap-6 transition-all duration-300"
                         style={{
                           color: isActive
                             ? "var(--text-main)"
@@ -162,13 +155,12 @@ const Featured = () => {
                       >
                         <div>
                           <h3
-                            className={`text-sm lg:text-base transition-all ${
+                            className={`text-base transition-all ${
                               isActive ? "font-semibold" : "font-normal"
                             }`}
                           >
                             {category.title}
                           </h3>
-
                           <p
                             className="text-[11px] mt-1"
                             style={{
@@ -180,10 +172,9 @@ const Featured = () => {
                             {category.count}
                           </p>
                         </div>
-
                         <FiChevronRight
                           size={16}
-                          className={`hidden lg:block transition-all duration-200 ${
+                          className={`transition-all duration-200 ${
                             isActive
                               ? "opacity-100 translate-x-1"
                               : "opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0"
@@ -191,14 +182,6 @@ const Featured = () => {
                           style={{ color: "var(--accent-primary)" }}
                         />
                       </div>
-
-                      {/* Mobile active border */}
-                      {isActive && (
-                        <div
-                          className="lg:hidden absolute bottom-0 left-0 right-0 h-[2px]"
-                          style={{ backgroundColor: "var(--accent-primary)" }}
-                        />
-                      )}
                     </div>
                   );
                 })}
@@ -206,8 +189,8 @@ const Featured = () => {
             </div>
           </div>
 
-          {/* RIGHT FEATURED PROPERTY (DARK CARD SLIDER) */}
-          <div className="lg:col-span-3 overflow-hidden relative rounded-sm h-[400px] bg-black">
+          {/* RIGHT FEATURED PROPERTY */}
+          <div className="col-span-3 overflow-hidden relative rounded-sm h-[400px] bg-black">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={activeProperty.id}
@@ -223,54 +206,42 @@ const Featured = () => {
                 className="absolute inset-0 w-full h-full cursor-pointer group rounded-sm overflow-hidden bg-zinc-950"
                 onClick={() => setSelectedProperty(activeProperty)}
               >
-                {/* Background Image */}
                 <img
                   src={activeProperty.image}
                   alt={activeProperty.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 "
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700"
                 />
-
-                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none" />
-
-                {/* Top Content */}
                 <div className="absolute top-5 left-5 right-5 flex items-start justify-between z-10">
                   <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[11px] font-medium">
                     {activeProperty.count}
                   </span>
-
                   <span className="text-white/60 text-xs tracking-widest">
                     0{activeIndex + 1}/0{CATEGORIES.length}
                   </span>
                 </div>
-
-                {/* Bottom Content */}
-                <div className="absolute left-5 right-5 bottom-5 md:left-8 md:right-8 md:bottom-8 z-10">
+                <div className="absolute left-8 right-8 bottom-8 z-10">
                   <p className="text-white/60 text-[10px] uppercase tracking-[0.18em] mb-3">
                     Featured property type
                   </p>
-
-                  <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                  <div className="flex items-end justify-between gap-6">
                     <div className="max-w-2xl">
-                      <h3 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight">
+                      <h3 className="text-white text-5xl lg:text-6xl font-medium tracking-tight">
                         {activeProperty.title}
                       </h3>
-
                       <div className="flex items-center gap-2 mt-4">
                         <FiMapPin
                           size={15}
                           className="text-white/70 shrink-0"
                         />
-                        <span className="text-white/60 text-xs sm:text-sm">
+                        <span className="text-white/60 text-sm">
                           {activeProperty.location}
                         </span>
                       </div>
-
                       <p className="text-white/65 text-sm leading-relaxed max-w-xl mt-4">
                         {activeProperty.description}
                       </p>
                     </div>
-
                     <button
                       type="button"
                       onClick={(e) => {
@@ -293,12 +264,11 @@ const Featured = () => {
           </div>
         </div>
 
-        {/* PARALLEL FOOTER ROW (Text + Indicators + Card Number) */}
+        {/* Desktop footer */}
         <div
-          className="mt-8 pt-6 border-t flex flex-col lg:flex-row lg:items-center justify-between gap-6"
+          className="hidden lg:flex mt-8 pt-6 border-t items-center justify-between gap-6"
           style={{ borderColor: "var(--border-light)" }}
         >
-          {/* Footer Text */}
           <p
             className="text-xs leading-relaxed max-w-sm"
             style={{ color: "var(--text-secondary)" }}
@@ -306,9 +276,7 @@ const Featured = () => {
             Explore carefully selected commercial properties across different
             business requirements and locations.
           </p>
-
-          {/* Indicators + Number Count */}
-          <div className="flex items-center justify-between sm:justify-start gap-8">
+          <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
               {CATEGORIES.map((category) => (
                 <button
@@ -327,7 +295,6 @@ const Featured = () => {
                 />
               ))}
             </div>
-
             <div
               className="text-xs font-medium tracking-wider"
               style={{ color: "var(--text-secondary)" }}
@@ -336,9 +303,82 @@ const Featured = () => {
             </div>
           </div>
         </div>
+
+        {/* ========== MOBILE ARCHITECTURE (completely different) ========== */}
+        <div className="lg:hidden space-y-6">
+          {CATEGORIES.map((category, index) => (
+            <motion.div
+              key={category.id}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: index * 0.08 }}
+              className="relative aspect-[16/9] rounded-sm overflow-hidden cursor-pointer group"
+              onClick={() => setSelectedProperty(category)}
+            >
+              {/* Image */}
+              <img
+                src={category.image}
+                alt={category.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-active:scale-105"
+              />
+
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-black/10" />
+
+              {/* Top badges */}
+              <div className="absolute top-4 left-4 right-4 flex items-start justify-between z-10">
+                <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[11px] font-medium">
+                  {category.count}
+                </span>
+
+                <span className="text-white/50 text-xs tracking-widest">
+                  0{index + 1}/0{CATEGORIES.length}
+                </span>
+              </div>
+
+              {/* Bottom content */}
+              <div className="absolute left-5 right-5 bottom-5 z-10">
+                <p className="text-white/50 text-[9px] uppercase tracking-[0.2em] mb-2">
+                  Featured property type
+                </p>
+
+                <div className="flex items-end justify-between gap-4">
+                  <div className="min-w-0">
+                    <h3 className="text-white text-2xl sm:text-3xl font-medium tracking-tight leading-tight">
+                      {category.title}
+                    </h3>
+
+                    <p className="text-white/60 text-xs sm:text-sm leading-relaxed mt-2 line-clamp-2 max-w-[90%]">
+                      {category.description}
+                    </p>
+                  </div>
+
+                 
+                </div>
+
+                {/* Bottom hint */}
+                <div className="mt-4 flex items-center">
+                  <span className="text-white/35 text-[10px] uppercase tracking-[0.15em]">
+                    Tap to explore
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Mobile footer note */}
+          <p
+            className="text-xs leading-relaxed text-center pt-2 px-4"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            Explore carefully selected commercial properties across different
+            business requirements and locations.
+          </p>
+        </div>
       </div>
 
-      {/* DRAWER */}
+      {/* DRAWER – shared */}
       <AnimatePresence>
         {selectedProperty && (
           <>
@@ -349,7 +389,6 @@ const Featured = () => {
               onClick={() => setSelectedProperty(null)}
               className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
             />
-
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -371,7 +410,6 @@ const Featured = () => {
                 >
                   Property information
                 </span>
-
                 <button
                   type="button"
                   onClick={() => setSelectedProperty(null)}
@@ -384,7 +422,6 @@ const Featured = () => {
                   <FiX size={16} />
                 </button>
               </div>
-
               <div className="flex-1 overflow-y-auto p-6">
                 <div className="relative h-64 rounded-2xl overflow-hidden mb-7">
                   <img
@@ -393,21 +430,18 @@ const Featured = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-
                 <p
                   className="text-xs uppercase tracking-[0.16em] mb-2"
                   style={{ color: "var(--accent-primary)" }}
                 >
                   {selectedProperty.count}
                 </p>
-
                 <h2
                   className="text-3xl font-medium tracking-tight mb-4"
                   style={{ color: "var(--text-main)" }}
                 >
                   {selectedProperty.title}
                 </h2>
-
                 <div className="flex items-center gap-2 mb-6">
                   <FiMapPin
                     size={14}
@@ -420,14 +454,12 @@ const Featured = () => {
                     {selectedProperty.location}
                   </span>
                 </div>
-
                 <p
                   className="text-sm leading-relaxed"
                   style={{ color: "var(--text-secondary)" }}
                 >
                   {selectedProperty.description}
                 </p>
-
                 <div
                   className="mt-8 p-5 rounded-2xl border"
                   style={{
@@ -450,7 +482,6 @@ const Featured = () => {
                   </p>
                 </div>
               </div>
-
               <div
                 className="p-6 border-t"
                 style={{ borderColor: "var(--border-light)" }}

@@ -27,7 +27,7 @@ const Footer = () => {
       <div className="px-6 md:px-12 lg:px-20">
         <div className="max-w-8xl mx-auto">
           {/* TOP SECTION */}
-          <div className="pt-10 md:py-20 lg:py-24 flex flex-col lg:flex-row justify-between gap-16">
+          <div className="pt-10 md:py-10 lg:py-10 flex flex-col lg:flex-row justify-between gap-16">
             {/* BRAND */}
             <div className="max-w-xl">
               <p className="text-[9px] uppercase tracking-[0.35em] text-white/35 mb-7">
