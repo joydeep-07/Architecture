@@ -1,4 +1,5 @@
 import React from "react";
+import Featured from "./Featured";
 
 const Hero = () => {
   const stats = [
@@ -77,10 +78,13 @@ const Hero = () => {
         </div>
       </div>
 
+
+      <Featured/>
+
       {/* =========================
           ABOUT + STATS
       ========================== */}
-      <div className="mt-20 grid grid-cols-1 items-start gap-12 px-2 lg:grid-cols-12">
+      <div className=" grid grid-cols-1 items-start gap-12 px-3 lg:grid-cols-12">
         {/* About */}
         <div className="space-y-5 lg:col-span-5">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">

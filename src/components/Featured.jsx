@@ -124,7 +124,7 @@ const Featured = () => {
         </div>
 
         {/* Main Layout */}
-        <div className="grid grid-cols-1 md:px-6 lg:grid-cols-4 gap-8 lg:gap-12 items-start">
+        <div className="grid grid-cols-1 md:px-0 lg:grid-cols-4 gap-8 lg:gap-12 items-start">
           {/* LEFT CATEGORY MENU */}
           <div className="relative h-full flex flex-col justify-between">
             <div className="relative">
@@ -207,7 +207,7 @@ const Featured = () => {
           </div>
 
           {/* RIGHT FEATURED PROPERTY (DARK CARD SLIDER) */}
-          <div className="lg:col-span-3 overflow-hidden relative rounded-2xl h-[400px] bg-black">
+          <div className="lg:col-span-3 overflow-hidden relative rounded-sm h-[400px] bg-black">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={activeProperty.id}
@@ -220,7 +220,7 @@ const Featured = () => {
                   x: { type: "spring", stiffness: 260, damping: 28 },
                   opacity: { duration: 0.2 },
                 }}
-                className="absolute inset-0 w-full h-full cursor-pointer group rounded-2xl overflow-hidden bg-zinc-950"
+                className="absolute inset-0 w-full h-full cursor-pointer group rounded-sm overflow-hidden bg-zinc-950"
                 onClick={() => setSelectedProperty(activeProperty)}
               >
                 {/* Background Image */}
