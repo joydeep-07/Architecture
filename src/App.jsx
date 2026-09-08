@@ -1,18 +1,31 @@
-import React from 'react'
-import Home from './pages/Home'
-import Navbar from './layouts/Navbar'
-import LenisScroll from './utils/Lenis'
-import Footer from './layouts/Footer'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Root from "./layouts/Root";
+
+import Home from "./pages/Home";
+import Catalog from "./pages/Catalog";
+import Process from "./pages/Process";
+import Reviews from "./pages/Reviews";
+import Contacts from "./pages/Contact";
 
 const App = () => {
   return (
-    <div>
-      <LenisScroll/>
-      <Navbar/>
-      <Home/>
-      <Footer/>
-    </div>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        {/* Main Layout */}
+        <Route element={<Root />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/contacts" element={<Contacts />} />
+        </Route>
 
-export default App
+       
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;
