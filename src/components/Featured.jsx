@@ -250,7 +250,7 @@ const Featured = () => {
   return (
     <section
       ref={sectionRef}
-      className="w-full md:px-6 px-4 py-20 relative overflow-hidden"
+      className="w-full md:px-6 px-0 py-20 relative overflow-hidden"
       style={{ backgroundColor: "var(--bg-main)" }}
     >
       <div className="mx-auto">
@@ -355,7 +355,7 @@ const Featured = () => {
           </div>
 
           {/* RIGHT FEATURED PROPERTY */}
-          <div className="col-span-3 overflow-hidden relative rounded-sm h-[400px] bg-black">
+          <div className="col-span-3 overflow-hidden relative rounded-sm h-[400px] bg-[var(--bg-main)]">
             <div className="feat-image-wrap w-full h-full relative overflow-hidden">
               <AnimatePresence initial={false} custom={direction}>
                 <motion.div

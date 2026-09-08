@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Featured from "./Featured";
+import Design from "./Design";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -258,7 +259,8 @@ const Hero = () => {
         </div>
       </div>
 
-      <Featured />
+      {/* <Featured /> */}
+      <Design/>
 
       {/* ABOUT + STATS BOXES */}
       <div
