@@ -84,7 +84,7 @@ const Hero = () => {
       {/* =========================
           ABOUT + STATS
       ========================== */}
-      <div className=" grid grid-cols-1 items-start gap-12 px-3 lg:grid-cols-12">
+      <div className=" grid grid-cols-1 items-start gap-12 px-0 lg:grid-cols-12">
         {/* About */}
         <div className="space-y-5 lg:col-span-5">
           <span className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
@@ -111,7 +111,6 @@ const Hero = () => {
               className="
                 group
                 flex
-                min-h-[165px]
                 flex-col
                 justify-between
                 rounded-sm
@@ -125,8 +124,8 @@ const Hero = () => {
               "
             >
               {/* Top */}
-              <div className="flex items-start justify-between">
-                <span className="text-xs font-medium text-[var(--text-muted)]">
+              <div className="hidden md:flex mb-2 items-start justify-between">
+                <span className="text-xs  font-medium text-[var(--text-muted)]">
                   0{index + 1}
                 </span>
 
