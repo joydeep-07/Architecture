@@ -61,7 +61,7 @@ const Design = () => {
       });
 
       // --------------------------------------------------
-      // Main timeline
+      // Main timeline (Original durations, reduced delays)
       // --------------------------------------------------
 
       const tl = gsap.timeline({
@@ -89,7 +89,7 @@ const Design = () => {
             stagger: 0.1,
             ease: "power3.out",
           },
-          "-=0.5",
+          "-=0.8",
         )
 
         // 3. Image reveal
@@ -100,7 +100,7 @@ const Design = () => {
             duration: 1.4,
             ease: "power4.inOut",
           },
-          "-=0.2",
+          "-=0.5",
         )
 
         // 4. Image scale
@@ -123,7 +123,7 @@ const Design = () => {
             stagger: 0.12,
             ease: "power3.inOut",
           },
-          "-=0.7",
+          "-=1.1",
         )
 
         // 6. Description
@@ -135,7 +135,7 @@ const Design = () => {
             duration: 0.9,
             ease: "power3.out",
           },
-          "-=0.5",
+          "-=0.8",
         )
 
         // 7. Bottom information line
@@ -146,7 +146,7 @@ const Design = () => {
             duration: 0.9,
             ease: "power3.inOut",
           },
-          "-=0.3",
+          "-=0.6",
         )
 
         // 8. Approach + Principle
@@ -159,7 +159,7 @@ const Design = () => {
             stagger: 0.15,
             ease: "power3.out",
           },
-          "-=0.5",
+          "-=0.7",
         );
 
       // --------------------------------------------------

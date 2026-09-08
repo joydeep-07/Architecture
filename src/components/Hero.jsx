@@ -263,7 +263,7 @@ const Hero = () => {
       {/* ABOUT + STATS BOXES */}
       <div
         ref={aboutRef}
-        className="grid grid-cols-1 items-start gap-12 px-0 lg:grid-cols-12 mt-16"
+        className="grid grid-cols-1 items-start gap-12  md:px-8  lg:grid-cols-12 mt-16"
       >
         <div className="space-y-5 lg:col-span-5">
           <span className="about-label block text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-muted)] transform-gpu will-change-[transform,opacity]">
