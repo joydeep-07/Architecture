@@ -8,10 +8,12 @@ import Catalog from "./pages/Catalog";
 import Process from "./pages/Process";
 import Reviews from "./pages/Reviews";
 import Contacts from "./pages/Contact";
+import LenisScroll from "./utils/Lenis";
 
 const App = () => {
   return (
     <BrowserRouter>
+    <LenisScroll/>
       <Routes>
         {/* Main Layout */}
         <Route element={<Root />}>
