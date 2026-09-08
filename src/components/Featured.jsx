@@ -401,7 +401,7 @@ const Featured = () => {
               }}
             >
               <div
-                className="p-5 border-b flex items-center justify-between"
+                className="p-4 border-b flex items-center justify-between"
                 style={{ borderColor: "var(--border-light)" }}
               >
                 <span
@@ -422,8 +422,8 @@ const Featured = () => {
                   <FiX size={16} />
                 </button>
               </div>
-              <div className="flex-1 overflow-y-auto p-6">
-                <div className="relative h-64 rounded-2xl overflow-hidden mb-7">
+              <div className="flex-1 overflow-y-auto p-4 md:p-6">
+                <div className="relative h-64 rounded-sm overflow-hidden mb-7">
                   <img
                     src={selectedProperty.image}
                     alt={selectedProperty.title}
@@ -461,11 +461,9 @@ const Featured = () => {
                   {selectedProperty.description}
                 </p>
                 <div
-                  className="mt-8 p-5 rounded-2xl border"
-                  style={{
-                    backgroundColor: "var(--bg-card)",
-                    borderColor: "var(--border-light)",
-                  }}
+                  className="mt-8 rounded-sm"
+                 
+                  
                 >
                   <p
                     className="text-xs uppercase tracking-[0.15em] font-semibold mb-2"
@@ -483,18 +481,18 @@ const Featured = () => {
                 </div>
               </div>
               <div
-                className="p-6 border-t"
+                className="py-6 px-4 border-t"
                 style={{ borderColor: "var(--border-light)" }}
               >
                 <button
                   type="button"
-                  className="w-full py-3.5 rounded-xl text-xs uppercase tracking-[0.12em] font-semibold"
+                  className="w-full py-3.5 rounded-sm text-xs uppercase tracking-[0.12em] font-semibold"
                   style={{
                     backgroundColor: "var(--accent-primary)",
                     color: "var(--bg-main)",
                   }}
                 >
-                  Explore Properties
+                  Explore more Properties
                 </button>
               </div>
             </motion.div>
