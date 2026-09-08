@@ -12,7 +12,17 @@ const Design = () => {
     () => {
       const section = sectionRef.current;
 
+      // --------------------------------------------------
       // Initial states
+      // --------------------------------------------------
+
+      // Top line
+      gsap.set(".design-top-line", {
+        scaleX: 0,
+        transformOrigin: "left center",
+      });
+
+      // Image
       gsap.set(".design-image-wrap", {
         clipPath: "inset(100% 0% 0% 0%)",
       });
@@ -21,47 +31,79 @@ const Design = () => {
         scale: 1.2,
       });
 
+      // Labels
       gsap.set(".design-label", {
         y: 25,
         opacity: 0,
       });
 
+      // Heading
       gsap.set(".design-heading-line", {
         yPercent: 200,
-        rotate: 0,
       });
 
+      // Description
       gsap.set(".design-description", {
         y: 40,
         opacity: 0,
       });
 
+      // Bottom information line
       gsap.set(".design-info-line", {
         scaleX: 0,
         transformOrigin: "left center",
       });
 
+      // Approach + Principle
       gsap.set(".design-info", {
         y: 35,
         opacity: 0,
       });
 
-      // Main Reveal Timeline
+      // --------------------------------------------------
+      // Main timeline
+      // --------------------------------------------------
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 75%",
-          end: "bottom 40%",
+          start: "top 50%",
           toggleActions: "play none none reverse",
         },
       });
 
-      // Image reveal
-      tl.to(".design-image-wrap", {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 1.4,
-        ease: "power4.inOut",
+      // 1. Top border draws
+      tl.to(".design-top-line", {
+        scaleX: 1,
+        duration: 1.1,
+        ease: "power3.inOut",
       })
+
+        // 2. Top labels appear
+        .to(
+          ".design-label",
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: "power3.out",
+          },
+          "-=0.5",
+        )
+
+        // 3. Image reveal
+        .to(
+          ".design-image-wrap",
+          {
+            clipPath: "inset(0% 0% 0% 0%)",
+            duration: 1.4,
+            ease: "power4.inOut",
+          },
+          "-=0.2",
+        )
+
+        // 4. Image scale
         .to(
           ".design-image",
           {
@@ -72,32 +114,19 @@ const Design = () => {
           "<",
         )
 
-        // Label
-        .to(
-          ".design-label",
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.7,
-            ease: "power3.out",
-          },
-          "-=1",
-        )
-
-        // Heading reveal
+        // 5. Heading reveal
         .to(
           ".design-heading-line",
           {
             yPercent: 0,
-            rotate: 0,
             duration: 1,
             stagger: 0.12,
-            ease: "easeInout",
+            ease: "power3.inOut",
           },
-          "-=0.3",
+          "-=0.7",
         )
 
-        // Description
+        // 6. Description
         .to(
           ".design-description",
           {
@@ -109,18 +138,18 @@ const Design = () => {
           "-=0.5",
         )
 
-        // Border Line Reveal
+        // 7. Bottom information line
         .to(
           ".design-info-line",
           {
             scaleX: 1,
-            duration: 0.8,
+            duration: 0.9,
             ease: "power3.inOut",
           },
-          "-=0.6",
+          "-=0.3",
         )
 
-        // Approach + Principle
+        // 8. Approach + Principle
         .to(
           ".design-info",
           {
@@ -133,10 +162,24 @@ const Design = () => {
           "-=0.5",
         );
 
-      // Isolated Parallax Scrub (using a dedicated inner wrapper to prevent animation conflicts)
-     
+      // --------------------------------------------------
+      // Image parallax
+      // --------------------------------------------------
+
+      gsap.to(".design-image-parallax", {
+        yPercent: 8,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.2,
+        },
+      });
     },
-    { scope: sectionRef },
+    {
+      scope: sectionRef,
+    },
   );
 
   return (
@@ -145,8 +188,11 @@ const Design = () => {
       className="w-full px-4 md:px-12 py-24 md:py-32 overflow-hidden"
     >
       <div className="max-w-8xl mx-auto">
-        {/* Top label */}
-        <div className="flex items-center justify-between border-b border-[var(--border-light)] pb-5 mb-16 overflow-hidden">
+        {/* -----------------------------------------------
+            TOP LABEL
+        ------------------------------------------------ */}
+
+        <div className="relative flex items-center justify-between pb-5 mb-16 overflow-hidden">
           <span className="design-label text-xs md:text-sm uppercase tracking-[0.25em] text-[var(--text-secondary)]">
             01 — Design Philosophy
           </span>
@@ -154,10 +200,20 @@ const Design = () => {
           <span className="design-label text-xs md:text-sm text-[var(--text-secondary)]">
             Architecture / 2026
           </span>
+
+          {/* Animated top line */}
+          <div className="design-top-line absolute bottom-0 left-0 w-full h-px bg-[var(--border-light)]" />
         </div>
 
+        {/* -----------------------------------------------
+            MAIN CONTENT
+        ------------------------------------------------ */}
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch">
-          {/* Image */}
+          {/* ---------------------------------------------
+              IMAGE
+          ---------------------------------------------- */}
+
           <div className="lg:col-span-4">
             <div className="design-image-wrap relative group overflow-hidden rounded-sm aspect-[9/12]">
               <div className="design-image-parallax w-full h-[120%] -mt-[10%]">
@@ -168,6 +224,7 @@ const Design = () => {
                 />
               </div>
 
+              {/* Image caption */}
               <div className="design-caption absolute bottom-0 left-0 right-0 p-5 md:p-6 bg-gradient-to-t from-black/60 to-transparent z-10">
                 <span className="text-white text-xs uppercase tracking-[0.2em]">
                   Fig. 01 — Spatial composition
@@ -176,14 +233,20 @@ const Design = () => {
             </div>
           </div>
 
-          {/* Content */}
+          {/* ---------------------------------------------
+              CONTENT
+          ---------------------------------------------- */}
+
           <div className="lg:col-span-8 flex flex-col">
             <div className="flex flex-col h-full">
-              {/* Main content */}
+              {/* Main text */}
               <div>
-                <p className="design-label text-xs uppercase tracking-[0.3em] text-[var(--accent-primary)] mb-6 inline-block">
-                  Thoughtful spaces
-                </p>
+                {/* Small label */}
+                <div className="overflow-hidden inline-block mb-6">
+                  <p className="design-label text-xs uppercase tracking-[0.3em] text-[var(--accent-primary)]">
+                    Thoughtful spaces
+                  </p>
+                </div>
 
                 {/* Heading */}
                 <h2 className="text-4xl md:text-6xl font-medium tracking-tight leading-[1.2] text-[var(--text-main)] mb-10 overflow-hidden">
@@ -207,11 +270,15 @@ const Design = () => {
                 </div>
               </div>
 
-              {/* Approach + Principle */}
+              {/* -----------------------------------------
+                  APPROACH + PRINCIPLE
+              ------------------------------------------ */}
+
               <div className="mt-auto pt-10 relative grid grid-cols-1 sm:grid-cols-2 gap-8">
-                {/* Animated border */}
+                {/* Animated line */}
                 <div className="design-info-line absolute top-0 left-0 w-full h-px bg-[var(--border-light)]" />
 
+                {/* Approach */}
                 <div className="design-info">
                   <span className="block text-xs uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-3">
                     Approach
@@ -222,6 +289,7 @@ const Design = () => {
                   </h3>
                 </div>
 
+                {/* Principle */}
                 <div className="design-info">
                   <span className="block text-xs uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-3">
                     Principle
