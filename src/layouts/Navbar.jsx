@@ -45,7 +45,7 @@ const Navbar = () => {
               </span>
 
               <span className="block text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
-                Commercial Real Estate
+                Architecture & Engineering
               </span>
             </div>
           </Link>
@@ -66,8 +66,7 @@ const Navbar = () => {
             </div>
 
             {/* Login */}
-            <button
-            
+            {/* <button
               className="
                 inline-flex items-center justify-center
                 h-9 px-4 sm:px-5
@@ -85,7 +84,7 @@ const Navbar = () => {
               "
             >
               Login
-            </button>
+            </button> */}
           </div>
         </nav>
       </header>

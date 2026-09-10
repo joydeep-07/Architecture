@@ -207,60 +207,78 @@ const Hero = () => {
             <img
               ref={heroImageRef}
               src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1200"
-              alt="Modern commercial building"
+              alt="Modern architectural building"
               className="h-[115%] w-full object-cover transform-gpu will-change-transform -mt-[5%]"
             />
+
             <div className="absolute inset-0 bg-[var(--black)]/10" />
           </div>
         </div>
 
-        <div className="relative z-10 flex min-h-[560px] items-center p-8 md:p-14 lg:p-16">
+        <div
+          className="
+      relative z-10
+      min-h-[560px]
+      p-8
+      md:p-14
+      lg:p-16
+      flex
+      flex-col
+      justify-between
+      md:justify-center
+    "
+        >
+          {/* TOP CONTENT */}
           <div className="max-w-xl">
             <span className="hero-label mb-6 block text-xs font-medium uppercase tracking-[0.2em] text-[var(--white)]/50 transform-gpu will-change-[transform,opacity]">
-              Commercial real estate
+              Architecture & Engineering
             </span>
 
-            <h1 className="text-5xl font-light leading-[0.95] tracking-[-0.04em] sm:text-6xl lg:text-7xl overflow-hidden">
+            <h1 className="text-4xl font-light leading-[1.2] tracking-[-0.04em] sm:text-6xl lg:text-7xl overflow-hidden">
               <span className="hero-title-line block transform-gpu will-change-transform">
-                Real estate
+                Spaces built with
               </span>
+
               <span className="hero-title-line block transform-gpu will-change-transform">
-                for business
+                Purpose
               </span>
             </h1>
+          </div>
 
-            <p className="hero-desc mt-7 max-w-sm text-sm leading-7 text-[var(--white)]/60 sm:text-base transform-gpu will-change-[transform,opacity]">
-              Lease, sale, and selection of properties from offices to
-              warehouses.
+          {/* BOTTOM CONTENT ON MOBILE */}
+          <div className="md:mt-7 max-w-lg">
+            <p className="hero-desc text-xs leading-[1.6] font-light text-[var(--white)]/60 sm:text-[15px] transform-gpu will-change-[transform,opacity]">
+              Architecture, engineering, and thoughtful planning that transform
+              ideas into functional and enduring spaces.
             </p>
 
             <button
               type="button"
               className="
-                hero-btn
-                mt-8
-                rounded-sm
-                bg-[var(--white)]
-                px-7
-                py-3.5
-                text-sm
-                font-medium
-                text-[var(--text-main)]
-                transition-colors
-                duration-300
-                hover:bg-[var(--bg-hover)]
-                transform-gpu
-                will-change-[transform,opacity]
-              "
+          hero-btn
+          mt-8
+          rounded-sm
+          bg-[var(--white)]
+          px-7
+          py-3.5
+          text-sm
+          font-medium
+          text-[var(--text-main)]
+          transition-colors
+          duration-300
+          hover:bg-[var(--bg-hover)]
+          transform-gpu
+          will-change-[transform,opacity]
+        "
             >
-              Start collaboration
+              Start a project
             </button>
           </div>
         </div>
       </div>
 
       {/* <Featured /> */}
-      <Design/>
+      <Design />
 
       {/* ABOUT + STATS BOXES */}
       <div
